@@ -1,0 +1,1352 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f0e8">
+<title>雙北夫妻約會體驗地圖</title>
+<style>
+:root{--ink:#27342e;--muted:#707a73;--paper:#f5f2eb;--card:#fffdf8;--line:#e3e2d8;--green:#315d4a;--soft:#e7eee6;--rust:#b97058;--sand:#e9dfcc;--shadow:0 12px 30px #25372c0a}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}button,input,select{font:inherit}.wrap{max-width:1160px;margin:auto;padding:28px 22px 70px}.hero{padding:34px 38px;background:#e7ece2;border-radius:26px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #b8c8b8;border-radius:50%;right:-20px;top:-100px;box-shadow:0 0 0 24px #e7ece2,0 0 0 25px #c6d3c6,0 0 0 52px #e7ece2,0 0 0 53px #d1dbd0}.eyebrow{color:var(--green);font-size:.75rem;font-weight:750;letter-spacing:.16em}.hero h1{font:clamp(2rem,5vw,3.15rem)/1.2 Georgia,"Noto Serif TC",serif;margin:7px 0 10px}.hero p{color:#526056;max-width:720px;margin:0}.prefs{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.pref{font-size:.82rem;padding:5px 11px;background:#ffffffad;border:1px solid #d5ded2;border-radius:99px}.controls{display:grid;grid-template-columns:minmax(220px,1fr) minmax(180px,.7fr) auto auto auto;gap:9px;margin:20px 0 13px}.input,.btn{border:1px solid var(--line);border-radius:11px;background:var(--card);padding:10px 12px;color:var(--ink)}.btn{cursor:pointer}.btn:hover{border-color:#9db19e}.source-hint{font-size:.82rem;color:var(--muted);padding:0 2px;margin:0 0 10px}.source-hint.error{color:#8d5639}.countrow{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:.88rem;margin:0 2px 14px}.layout{display:grid;grid-template-columns:255px 1fr;gap:17px;align-items:start}.sidebar{position:sticky;top:12px;background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;max-height:calc(100vh - 24px);overflow:auto}.sidebar h2{font-size:.9rem;margin:0 0 8px}.directions{display:flex;flex-direction:column;gap:3px}.direction{border:0;text-align:left;background:transparent;color:#5e6b62;border-radius:10px;padding:9px 10px;cursor:pointer;display:flex;justify-content:space-between;gap:7px;font-size:.85rem}.direction-manager{margin-top:9px;border-top:1px solid var(--line);padding-top:9px}.direction-manager summary{cursor:pointer;color:var(--green);font-size:.84rem;font-weight:650}.custom-form{display:grid;gap:8px;padding:10px 2px 2px}.custom-form label{display:grid;gap:3px;color:var(--muted);font-size:.76rem}.custom-form .input{width:100%;font-size:.82rem;padding:8px}.direction:hover,.direction.active{background:var(--soft);color:var(--green);font-weight:650}.direction .num{font-size:.73rem;color:#919a91;white-space:nowrap}.sideNote{color:var(--muted);font-size:.77rem;border-top:1px solid var(--line);padding-top:11px;margin-top:11px}.main{min-width:0}.welcome{background:#efe9dd;border:1px solid #e5ddce;border-radius:17px;padding:17px 19px;margin-bottom:13px}.welcome strong{display:block;font-family:Georgia,"Noto Serif TC",serif;font-size:1.15rem;margin-bottom:3px}.welcome p{margin:0;color:#667066;font-size:.88rem}.selHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:2px 2px 12px}.selHead h2{font-size:1.22rem;margin:0}.selHead p{margin:2px 0 0;color:var(--muted);font-size:.84rem}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:190px}.cardTop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.card h3{font-size:.98rem;line-height:1.4;margin:0}.area{font-size:.72rem;white-space:nowrap;color:var(--green);background:var(--soft);border-radius:99px;padding:3px 8px}.venue{font-size:.82rem;color:#56645a;margin:7px 0 5px}.desc{font-size:.84rem;color:var(--muted);margin:0 0 11px}.actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:auto}.stateBtn{border:1px solid var(--line);background:white;color:#59665d;border-radius:9px;padding:6px 9px;font-size:.78rem;cursor:pointer}.stateBtn[data-state="visited"]{background:#e4eee5;border-color:#c5d9c7;color:#285b38}.stateBtn[data-state="not_visited"]{background:#faf0e8;border-color:#ead3c0;color:#8d5639}.stateBtn[data-state="unknown"]{background:#f2f1ec;color:#73796f}.stateBtn:hover{filter:brightness(.97)}.link{font-size:.8rem;color:var(--green);font-weight:650;text-decoration:none;margin-left:auto}.link:hover{text-decoration:underline}.empty{grid-column:1/-1;text-align:center;padding:38px 20px;border:1px dashed #d6d8ce;border-radius:16px;color:var(--muted);background:#ffffff7a}.toolbarNote{font-size:.78rem;color:var(--muted);margin:11px 2px}.foot{margin-top:24px;font-size:.78rem;color:var(--muted)}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.tools .btn{font-size:.8rem;padding:8px 10px}.favline{margin:0 0 14px;padding:12px 14px;background:#fbf7ee;border:1px solid #eee3cd;border-radius:13px;font-size:.84rem;color:#645b49}.favline b{color:#6c4c36}.hide{display:none}@media(max-width:850px){.controls{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.directions{flex-direction:row;overflow-x:auto;padding-bottom:4px}.direction{white-space:nowrap;flex:none}.direction .num{display:none}.sideNote{display:none}.cards{grid-template-columns:1fr 1fr}}@media(max-width:560px){.wrap{padding:13px 12px 45px}.hero{padding:25px 20px}.hero:after{opacity:.4}.controls{grid-template-columns:1fr}.countrow{flex-direction:column;gap:1px}.cards{grid-template-columns:1fr}.selHead{align-items:flex-start;flex-direction:column}.card{min-height:160px}}
+</style></head>
+<body><main class="wrap">
+<header class="hero"><div class="eyebrow">DATE IDEAS · TAIPEI & NEW TAIPEI</div><h1>雙北夫妻約會體驗地圖</h1><p>先挑活動方向，再瀏覽候選活動或體驗形式；逐項標記去過與否，慢慢整理成你們自己的約會清單。</p></header>
+<section class="controls"><input id="search" class="input" type="search" placeholder="搜尋方向、店家或活動…"><select id="stateFilter" class="input"><option value="all">所有標記狀態</option><option value="visited">去過</option><option value="not_visited">還沒去過</option><option value="unknown">待確認</option></select><button class="btn" id="loadMd">載入活動 MD</button><button class="btn" id="export">匯出備份</button><button class="btn" id="import">匯入備份</button><input id="mdFile" type="file" accept=".md,text/markdown" class="hide"><input id="file" type="file" accept="application/json" class="hide"></section>
+<div id="sourceHint" class="source-hint">正在讀取活動資料…</div>
+<div class="countrow"><span id="count">先從左側選擇活動方向</span><span>你的標記保存在目前瀏覽器</span></div>
+<div class="layout"><aside class="sidebar"><h2>選擇活動方向</h2><nav id="directions" class="directions"></nav><details class="direction-manager"><summary>＋ 新增活動方向</summary><form id="directionForm" class="custom-form"><label>方向名稱<input id="newDirectionName" class="input" required maxlength="40" placeholder="例如：陶藝與陶土"></label><label>方向簡介<textarea id="newDirectionIntro" class="input" rows="2" maxlength="120" placeholder="簡短說明這個方向"></textarea></label><button class="btn" type="submit">建立方向</button></form></details><div class="sideNote">選定方向後，右側會顯示目前整理到的店家／活動候選。候選不代表已確認近期檔期或雙人預約細節。</div></aside><section class="main"><div id="welcome" class="welcome"><strong>從你們有興趣的方向開始</strong><p>點選左側任一方向，查看候選項目，再用「去過／還沒去過／待確認」整理體驗狀態。</p></div><div class="selHead hide" id="heading"><div><h2 id="title"></h2><p id="intro"></p></div></div><details id="customOptionTools" class="direction-manager hide"><summary>＋ 在此方向新增候選活動</summary><form id="optionForm" class="custom-form"><label>活動名稱<input id="newActivityName" class="input" required maxlength="80"></label><label>店家／場地<input id="newActivityVenue" class="input" required maxlength="80"></label><label>地區<input id="newActivityArea" class="input" maxlength="40" placeholder="例如：台北大安"></label><label>介紹<textarea id="newActivityDetail" class="input" rows="2" maxlength="240"></textarea></label><label>活動網址（選填）<input id="newActivityUrl" class="input" type="url" placeholder="https://..."></label><button class="btn" type="submit">新增候選活動</button></form></details><div class="cards" id="cards"><div class="empty">選擇一個活動方向，這裡就會列出候選選項。</div></div><div class="toolbarNote">候選連結作為搜尋入口；營業情況、近期場次、價格與雙人報名條件請以店家最新公告為準。</div></section></div>
+<div class="tools"><button class="btn" id="reset">清除搜尋／篩選</button><button class="btn" id="clearMarks">清除所有體驗標記</button></div><footer class="foot">資料整理：雙北初步探索清單。體驗標記與自訂方向儲存在此瀏覽器；匯出 JSON 可備份或移轉。不同裝置／瀏覽器的資料不會自動同步。</footer>
+</main>
+<script>const STORAGE='duobei-date-experience-options-v2',CUSTOM_STORAGE='duobei-custom-directions-v1';let marks={};let customDirections=[];try{marks=JSON.parse(localStorage.getItem(STORAGE)||'{}')}catch{}try{const saved=JSON.parse(localStorage.getItem(CUSTOM_STORAGE)||'[]');if(Array.isArray(saved))customDirections=saved}catch{}let DIRS=[];let allOptions=[];let active=null;let query='';let filter='all';const $=s=>document.querySelector(s);const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const FALLBACK_DIRS=[
+  {
+    "id": "relax",
+    "name": "感官放鬆與溫浴",
+    "intro": "聲音、漂浮、SPA 與私人湯屋等身體放鬆體驗。",
+    "options": [
+      [
+        "bowa",
+        "頌缽團體／私人聲音浴",
+        "Bowa Reiki",
+        "台北／需確認場次",
+        "團體或私人場形式；報名前確認雙人同場方式。",
+        "https://bowareiki.com/group-singing-bowl-healing"
+      ],
+      [
+        "capella",
+        "漂浮冥想療程",
+        "Capella Taipei",
+        "台北",
+        "個人療程頁面；兩人是否能同時安排需向店家確認。",
+        "https://capellahotels.com/zh-tc/capella-taipei/offers/floating-meditation-therapy"
+      ],
+      [
+        "gaia",
+        "雙人共享湯泉 SPA 間",
+        "The Gaia 大地酒店",
+        "北投",
+        "可查芳療與雙人共享湯泉 SPA 設施。",
+        "https://www.thegaiahotel.com/facility-detail/SPA/"
+      ],
+      [
+        "tianyue",
+        "雙人禪式私湯屋",
+        "天玥泉",
+        "北投",
+        "官網列雙人 90 分鐘方案；價格與規則以當期公告為準。",
+        "https://www.nf-hotels.com.tw/beitou-hot-spring-resort/%E7%A6%AA%E5%BC%8F%E6%B9%AF%E5%B1%8B/"
+      ],
+      [
+        "vasaill",
+        "伴侶同步按摩／SPA",
+        "梵莎爾 SPA",
+        "雙北多館",
+        "官網有夫妻雙人課程；可先查看療程與分館。",
+        "https://www.vasaill.com/couple-spa"
+      ]
+    ]
+  },
+  {
+    "id": "mosaic",
+    "name": "馬賽克燈與拼貼",
+    "intro": "用彩色玻璃、馬賽克與拼貼做出燈具或生活小物。",
+    "options": [
+      [
+        "mosaic-house",
+        "土耳其馬賽克燈體驗",
+        "Mosaic Art House",
+        "台北工作室",
+        "玻璃馬賽克拼貼燈罩；查詢可預約日期與雙人座位。",
+        "https://mosaicarthousetw.com/products/mosaic-lamp-handmade-experience-workshop"
+      ],
+      [
+        "mosaic-studio",
+        "土耳其燈 DIY",
+        "Mosaic Art Studio",
+        "台北",
+        "約 2–3 小時的燈飾拼貼體驗；確認最新預約資訊。",
+        "https://mosaicartstudio.tw/products/taipei-mosaic-lamp-diy"
+      ],
+      [
+        "artist-mosaic",
+        "馬賽克燈工作坊",
+        "ARTIST 土耳其馬賽克燈工作室",
+        "台北中山",
+        "可查款式、課程時長與可約時段。",
+        "https://artisttw.com/products/online-booking-taipei"
+      ],
+      [
+        "hongzhou-tile",
+        "磁磚彩繪／拼貼",
+        "宏洲磁磚觀光工廠",
+        "新北鶯歌",
+        "磁磚彩繪與拼貼等 DIY；需確認成人課程和交通安排。",
+        "https://guide.easytravel.com.tw/scenic/8541"
+      ]
+    ]
+  },
+  {
+    "id": "glass",
+    "name": "玻璃與琉璃創作",
+    "intro": "吹製、彩繪、切割或熱塑玻璃，依作品與操作方式選擇。",
+    "options": [
+      [
+        "cozu-glass",
+        "玻璃創作體驗",
+        "COZU Lab",
+        "台北",
+        "玻璃手作體驗入口；查詢作品選項、成品取件和開課日期。",
+        "https://www.cozulab.com/products/lets-play"
+      ],
+      [
+        "kuns-glass",
+        "玻璃吹製／彩繪",
+        "坤水晶 Kun’s Crystal",
+        "松菸",
+        "吹製、玻璃彩繪等不同體驗；部分作品需預約或隔日取件。",
+        "https://www.globuya.com/TW/Taipei/363553200414871/%E5%9D%A4%E6%B0%B4%E6%99%B6%EF%BC%A0%E8%AA%A0%E5%93%81%E7%94%9F%E6%B4%BB%E6%9D%BE%E8%8F%B8%E5%BA%97"
+      ],
+      [
+        "redliuli",
+        "玻璃吹塑體驗",
+        "紅琉璃",
+        "台北／需確認場次",
+        "玻璃吹塑與塑形；頁面可能為季節或限定課，先確認近期場次。",
+        "https://www.redliuli.com/pages/diy-course"
+      ]
+    ]
+  },
+  {
+    "id": "pottery",
+    "name": "陶藝與陶土",
+    "intro": "拉坯、手捏、釉彩或陶器彩繪等不同陶土體驗。",
+    "options": [
+      [
+        "unfired",
+        "陶藝工作坊",
+        "Unfired Studio",
+        "台北",
+        "查看當期工作坊及體驗形式。",
+        "https://www.unfiredstudio.com/workshops"
+      ],
+      [
+        "aspure",
+        "手捏陶藝體驗",
+        "如洗陶藝",
+        "新北板橋",
+        "手捏陶器皿體驗；需預約上釉或成品取件。",
+        "https://www.aspureceramics.org/services-8"
+      ],
+      [
+        "yeeeepottery",
+        "拉坯體驗",
+        "歡樂陶一家",
+        "台北／需確認場次",
+        "先前搜尋到單次拉坯體驗，查詢近期可約時段。",
+        "https://www.yeeeepottery.com/"
+      ],
+      [
+        "gutetsu",
+        "陶藝拉坯體驗",
+        "愚哲陶藝",
+        "台北／需確認場次",
+        "查看單次體驗、時長與燒製取件方式。",
+        "https://gutetsu.myboostime.app/activities/PotteryWheelExperience"
+      ]
+    ]
+  },
+  {
+    "id": "jesmonite",
+    "name": "爵石、流體與立體藝術",
+    "intro": "調色、澆模、流體創作等材料感較強的藝術體驗。",
+    "options": [
+      [
+        "jesmonite",
+        "爵石花器＋鮮花 DIY",
+        "Jesmonite Taiwan",
+        "台北大安",
+        "調色澆模製作花器，再搭配鮮花；不同於一般插花課。",
+        "https://www.jesmonite.com.tw/products/-diy-vase-2"
+      ],
+      [
+        "paintstage-fluid",
+        "流體熊／流體畫",
+        "PaintStage",
+        "台北中山",
+        "流體創作候選；確認是否需等待乾燥後取件。",
+        "https://www.pinkoi.com/product/GmB7tVgr"
+      ],
+      [
+        "littlered-fluid",
+        "流體藝術／流體熊",
+        "小紅花手作",
+        "台北信義",
+        "查看作品尺寸、體驗時長與取件方式。",
+        "https://www.littleredfafa.com/services-8"
+      ]
+    ]
+  },
+  {
+    "id": "flower",
+    "name": "花藝與植物桌上創作",
+    "intro": "花束、桌花、乾燥花或室內小型植物創作。",
+    "options": [
+      [
+        "secplace",
+        "花藝體驗",
+        "Sec Place",
+        "台北／需確認場次",
+        "查看花材主題、當期課程與雙人預約方式。",
+        "https://www.secplace.com.tw/flowertime"
+      ],
+      [
+        "honeybee",
+        "花藝一日課",
+        "Honeybee Breath",
+        "台北大安",
+        "花藝設計體驗課候選；課程內容與日期以店家公告為準。",
+        "https://honeybeeb.com/products/floral-onedayclass"
+      ],
+      [
+        "original-eco",
+        "植物生態瓶／苔球",
+        "原生態工作室",
+        "台北／需預約",
+        "室內桌上植物創作；依你們當次興趣自行挑選。",
+        "https://www.klook.com/zh-TW/activity/57872-taipei-diy-workshop/"
+      ]
+    ]
+  },
+  {
+    "id": "fiber",
+    "name": "簇絨、織品與毛線手作",
+    "intro": "用毛線、織物與纖維做地毯、編織品或布面作品。",
+    "options": [
+      [
+        "slowww",
+        "Tufting 簇絨地毯／鉤織",
+        "慢工室 Slowww Studio",
+        "台北大安",
+        "有簇絨、鉤織等課程；查看作品尺寸和課程長度。",
+        "https://www.slowwwstudio.com/"
+      ],
+      [
+        "littlered-tuft",
+        "簇絨地毯體驗",
+        "小紅花手作",
+        "台北",
+        "不同尺寸地毯與杯墊課；查詢可訂日期。",
+        "https://www.klook.com/zh-TW/activity/80696-taipei-tufting-handmade-carpet-experience/"
+      ],
+      [
+        "comode",
+        "雙人框手作地毯",
+        "COMODE",
+        "台北中山",
+        "有雙人框方案；確認雙人是共作一件或分別製作。",
+        "https://www.comoderug.com/"
+      ],
+      [
+        "imu",
+        "染織／纖維手作",
+        "IMU Studio",
+        "雙北／需確認",
+        "工作室體驗入口；確認近期課程主題與地點。",
+        "https://www.imustudio.com/"
+      ]
+    ]
+  },
+  {
+    "id": "paperprint",
+    "name": "手工紙、印刷與暗房",
+    "intro": "從造紙、活版排字到底片沖印，體驗紙與影像的製作過程。",
+    "options": [
+      [
+        "suho",
+        "手工抄紙／花草紙",
+        "樹火紀念紙博物館",
+        "台北中山",
+        "有個人票與手工紙體驗資訊；場次需先核對。",
+        "https://www.suhopaper.org.tw/"
+      ],
+      [
+        "cac-print",
+        "絹印／版畫體驗",
+        "印刷體驗工作室",
+        "台北／需確認",
+        "查看製版、印刷素材與目前開放課程。",
+        "https://www.cacstudio.tw/products/%E7%B5%B2%E5%8D%B0%E8%A3%BD%E7%89%88%E5%8D%B0%E5%88%B7%E9%AB%94%E9%A9%97"
+      ],
+      [
+        "darkroom",
+        "黑白暗房／底片沖印",
+        "光影手工暗房",
+        "台北萬華",
+        "先前搜尋到暗房工作坊資訊；確認是否有個人／雙人場。",
+        "https://culture.skm.com.tw/ActEvent/Cweb/ActiveContent?ActUUID=81cf9245-ae45-4bd8-90b3-1ea90a40def7&MenuUUID=2b4eac84-5014-4c42-8a01-542ac57f7427"
+      ]
+    ]
+  },
+  {
+    "id": "dye",
+    "name": "藍染、植物染與布藝",
+    "intro": "以染色、拓印、刺繡或布面設計完成日常織品。",
+    "options": [
+      [
+        "dye-for-you",
+        "藍染體驗",
+        "Dye for You",
+        "台北／需確認",
+        "染色體驗頁面；查詢當期可報名場次。",
+        "https://www.fleacise.com/collections/diy/products/experience-indigo-dye-jp"
+      ],
+      [
+        "silkscreen",
+        "植物染／印刷延伸",
+        "台灣工藝美術／印刷體驗",
+        "雙北／需確認",
+        "適合進一步搜尋當期工藝課程，開課狀態需確認。",
+        "https://www.cacstudio.tw/products/%E7%B5%B2%E5%8D%B0%E8%A3%BD%E7%89%88%E5%8D%B0%E5%88%B7%E9%AB%94%E9%A9%97"
+      ]
+    ]
+  },
+  {
+    "id": "homecraft",
+    "name": "居家香氣、蠟燭與生活用品",
+    "intro": "做香膏、線香、蠟燭、手工皂或沐浴用品；和單純調香分開比較。",
+    "options": [
+      [
+        "mixlab",
+        "香膏／線香／香氛蠟燭",
+        "MIX LAB",
+        "新北板橋",
+        "多種香氣生活手作入口；選擇不同於香水調製的課程。",
+        "https://www.mixlab.com.tw/scent-workshop"
+      ],
+      [
+        "petitnook",
+        "香氛蠟燭＋下午茶",
+        "Petit Nook 小角落手作",
+        "新北／需確認",
+        "手作蠟燭體驗；查詢近期開課與雙人報名規則。",
+        "https://petitnook.com/candle/"
+      ],
+      [
+        "soap",
+        "手工皂／沐浴用品",
+        "茶山房肥皂文化體驗館",
+        "新北三峽",
+        "新北觀光工廠索引有相關體驗資料，先確認目前成人 DIY 項目。",
+        "https://www.economic.ntpc.gov.tw/FactoryTravel"
+      ]
+    ]
+  },
+  {
+    "id": "food",
+    "name": "料理、烘焙與食品製程",
+    "intro": "一起做料理、單品料理、烘焙或食物製程體驗。",
+    "options": [
+      [
+        "cookingfun",
+        "料理體驗課",
+        "CookingFun Taiwan",
+        "台北／需確認",
+        "料理課程入口；查詢課程主題、成團人數和近期日期。",
+        "https://cookingfuntaiwan.com/"
+      ],
+      [
+        "cocooking",
+        "共煮生活實驗室",
+        "Co-cooking Studio",
+        "台北",
+        "伴侶可同行的共煮活動候選；部分場次會與其他人交流。",
+        "https://www.cocookingstudio.com/workshop"
+      ],
+      [
+        "wishbaking",
+        "甜點烘焙 DIY",
+        "希希烘焙",
+        "台北／需確認",
+        "自由預約烘焙體驗候選；你們先前表示烘焙類去過，可標記狀態供篩選。",
+        "https://www.wishbakingdiy.com/"
+      ],
+      [
+        "fishball",
+        "魚丸／魚漿 DIY",
+        "登峰食品",
+        "新北淡水",
+        "手捏魚丸與食品製程體驗；先確認成人場次和預約方式。",
+        "https://www.fish-ball.com.tw/diy-experience/"
+      ],
+      [
+        "wangding",
+        "鐘錶／時鐘機芯組裝",
+        "王鼎時間科藝體驗館",
+        "新北土城",
+        "鐘錶導覽與 DIY 組裝；查詢目前開放項目及預約規則。",
+        "https://www.atoptimearts.com/"
+      ]
+    ]
+  },
+  {
+    "id": "tasting",
+    "name": "風味品飲與慢節奏餐桌",
+    "intro": "酒、可可、茶、咖啡或食材品鑑，搭配餐桌體驗。",
+    "options": [
+      [
+        "gamvegam",
+        "可可／巧克力風味體驗",
+        "Gam ve Gam",
+        "台北／需確認",
+        "體驗活動入口；確認近期主題與兩人可預約方式。",
+        "https://www.gamvegam.com.tw/zh-hant/pages/experiences"
+      ],
+      [
+        "caomu",
+        "可可工作坊",
+        "草木做事",
+        "台北／需確認",
+        "可可主題工作坊入口；查近期日期及實作內容。",
+        "https://www.caomuzhushi.com/workshops/cacao/"
+      ],
+      [
+        "wineclass",
+        "品酒／風味體驗",
+        "Gam ve Gam 課程體驗",
+        "台北／需確認",
+        "可詢問品飲課、私人場或搭餐主題。",
+        "https://www.gamvegam.com.tw/zh-hant/pages/experiences"
+      ],
+      [
+        "cocook",
+        "主題共煮／私廚餐桌",
+        "享家餚",
+        "台北／需確認",
+        "曾搜尋到料理結合藝術與沉浸餐桌的活動；檔期需重新查詢。",
+        "https://www.sharedkitchen.com.tw/%E4%B8%80%E5%B8%AD%E4%BA%BA-%E8%97%9D%E8%A1%93-x-%E6%96%99%E7%90%86-x-%E6%B2%89%E6%B5%B8%E5%BC%8F%E9%A4%90%E6%A1%8C%E9%AB%94%E9%A9%97%EF%BD%9C%E4%BA%AB%E5%AE%B6%E9%A4%9A/?display=1"
+      ]
+    ]
+  },
+  {
+    "id": "paint",
+    "name": "繪畫、畫飲與流體藝術",
+    "intro": "自由繪畫、畫飲、肖像或流體畫；以輕鬆共同創作為主。",
+    "options": [
+      [
+        "paintsip",
+        "PAINT SIP 畫飲",
+        "PAINT SIP",
+        "台北信義",
+        "畫布、顏料和飲品的輕鬆創作形式；確認近期場次。",
+        "https://www.fubonart.org.tw/mapper/place/article/3014"
+      ],
+      [
+        "paintstage",
+        "油畫／繪畫體驗",
+        "PaintStage",
+        "台北中山",
+        "繪畫與流體藝術課程入口；查看作品與課程時間。",
+        "https://www.pinkoi.com/product/GmB7tVgr"
+      ],
+      [
+        "fluid-little",
+        "流體畫／流體熊",
+        "小紅花手作",
+        "台北信義",
+        "流體藝術候選；查看可製作物件和取件時間。",
+        "https://www.littleredfafa.com/services-8"
+      ]
+    ]
+  },
+  {
+    "id": "immersive",
+    "name": "沉浸展演、解謎與劇場",
+    "intro": "展覽、真人演出、互動故事、密室或沉浸式用餐。",
+    "options": [
+      [
+        "jimi",
+        "全境式沉浸互動展",
+        "《與幾米頭碰頭》",
+        "台北／限定展",
+        "先前 thread 提到的限定展覽示例；展期與是否仍有場次需重新核對。",
+        "https://tickets.udnfunlife.com/application/UTK02/UTK0201_.aspx?PRODUCT_ID=P1G64OJ2"
+      ],
+      [
+        "youmeat",
+        "沉浸式劇場餐桌",
+        "YOU MEAT",
+        "台北／限定活動",
+        "先前搜尋到的期間限定活動；請查主辦方是否有新場次。",
+        "https://palfillertw.kktix.cc/events/youmeat?locale=zh-TW"
+      ],
+      [
+        "lost",
+        "雙人密室／解謎",
+        "LOST",
+        "台北",
+        "官網 FAQ 可查最低人數與規則；選房前確認適合雙人的主題。",
+        "https://losttw.com/faqs/"
+      ]
+    ]
+  },
+  {
+    "id": "vr",
+    "name": "VR、MR 與互動科技",
+    "intro": "區分多人走動式 VR、單人作品型 VR、互動展與模擬器。",
+    "options": [
+      [
+        "xrplayhouse",
+        "多人走動式 XR／VR",
+        "XR Playhouse",
+        "台北／需確認",
+        "多人同場體驗候選；查詢當期內容、場次和預約規定。",
+        "https://mediasphere.com.tw/venues/25"
+      ],
+      [
+        "tpacvr",
+        "作品型 VR《漂浮北藝》",
+        "臺北表演藝術中心",
+        "台北士林",
+        "以動作和空間互動的 VR 作品；需確認開放日期。",
+        "https://tpac.org.taipei/tour-vr"
+      ]
+    ]
+  },
+  {
+    "id": "challenge",
+    "name": "室內運動與技巧挑戰",
+    "intro": "射箭、攀岩與其他室內技巧型活動，可選體驗課或單次入場。",
+    "options": [
+      [
+        "archery",
+        "室內射箭體驗",
+        "Archery Base",
+        "台北／需確認",
+        "初學者射箭體驗入口；查看場次、教練安排與雙人方式。",
+        "https://archerybase.tw/archery-experience"
+      ],
+      [
+        "boulder",
+        "抱石／室內攀岩",
+        "Corner Bouldering",
+        "台北／需確認",
+        "可查單次體驗與新手說明課。",
+        "https://www.cornerbouldering.com/"
+      ]
+    ]
+  },
+  {
+    "id": "dance",
+    "name": "雙人舞蹈與肢體體驗",
+    "intro": "Salsa、Bachata 等社交舞新手課，兩人共同學習與互動。",
+    "options": [
+      [
+        "flow",
+        "Bachata／Salsa／Zouk 新手課",
+        "Flow Taipei",
+        "台北東區",
+        "查詢新手班與當期課表；確認是否需自備舞伴。",
+        "https://flowtaipei.com/new-students/"
+      ],
+      [
+        "salud",
+        "Salsa／Bachata 體驗課",
+        "Salud Salsa Party",
+        "台北／需確認",
+        "課程資訊入口；現行課表請以最新公告為準。",
+        "https://saludsalsaparty.com/info/LESSON/"
+      ]
+    ]
+  },
+  {
+    "id": "mosaicglass",
+    "name": "其他工藝與生活產業體驗",
+    "intro": "蠟雕、印章、鞋／布料與產業導覽加 DIY 等方向。",
+    "options": [
+      [
+        "newtaipei-factory",
+        "新北觀光工廠 DIY 索引",
+        "新北市經濟發展局",
+        "新北多區",
+        "依興趣搜尋鐘錶、布料、陶瓷、食品等產業體驗；依你們當次興趣自行挑選場次。",
+        "https://www.economic.ntpc.gov.tw/FactoryTravel"
+      ],
+      [
+        "ntpc-tourism",
+        "新北體驗活動索引",
+        "新北市觀光旅遊網",
+        "新北",
+        "作為尋找產業文化館與室內 DIY 的目錄，再確認成人體驗內容。",
+        "https://newtaipei.travel/zh-tw/column/801"
+      ]
+    ]
+  },
+  {
+    "id": "culture",
+    "name": "城市文化導覽與場館幕後",
+    "intro": "室內文化導覽、策展內容與表演場館幕後體驗。",
+    "options": [
+      [
+        "culture-curator",
+        "策展人導覽／展覽互動任務",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索策展人帶看、展覽任務或有互動內容的室內文化體驗；尚未核實具體場地。",
+        ""
+      ],
+      [
+        "culture-backstage",
+        "劇院／音樂廳／展演空間幕後參觀",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索場館導覽、舞台技術或後台參觀；需查是否有公開預約場次。",
+        ""
+      ],
+      [
+        "culture-traditional",
+        "傳統戲曲、偶戲或皮影操作體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "從觀賞延伸至身段、操偶或樂器入門；需確認成人課程與雙人參與方式。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "photo",
+    "name": "攝影、暗房與光影顯影",
+    "intro": "從拍攝到沖印、顯影的攝影與光敏創作。",
+    "options": [
+      [
+        "photo-darkroom",
+        "底片攝影／黑白暗房沖印",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索底片拍攝、暗房沖洗或相片放大的完整體驗；尚未核實具體場地。",
+        ""
+      ],
+      [
+        "photo-cyanotype",
+        "藍曬／植物藍曬／光敏印相",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以光線顯影製作影像作品，和一般繪畫或印刷工作坊區分。",
+        ""
+      ],
+      [
+        "photo-portrait",
+        "雙人肖像／棚拍攝影實作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索一起拍攝、互相掌鏡或棚拍實作課；需確認是教學體驗而非單純拍照服務。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "soundstage",
+    "name": "音樂、聲音與表演參與",
+    "intro": "共同節奏、即興表達、聲音和表演入門。",
+    "options": [
+      [
+        "sound-rhythm",
+        "手碟／鼓圈／節奏工作坊",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "團體合奏或節奏體驗，不要求既有樂器基礎；需確認雙人可同班。",
+        ""
+      ],
+      [
+        "sound-improv",
+        "即興劇／即興喜劇體驗課",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以遊戲、接話與共同創作故事為主的參與式課程。",
+        ""
+      ],
+      [
+        "sound-voice",
+        "配音／聲音表達／說故事工作坊",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索聲音表達、角色配音或說故事實作；需確認成人體驗課。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "bookword",
+    "name": "書籍裝幀與文字創作",
+    "intro": "紙上創作延伸至手工書、活版與文字表達。",
+    "options": [
+      [
+        "bookbinding",
+        "手工書／線裝書／書籍裝幀",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "親手完成一本小誌或手工書，和一般紙藝成品區分。",
+        ""
+      ],
+      [
+        "book-letterpress",
+        "活版排字／撿字印刷／書法",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索排版、印刷或書寫體驗；依興趣自行挑選媒材與工序。",
+        ""
+      ],
+      [
+        "book-writing",
+        "雙人故事共創／創意寫作工作坊",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以提示、接龍或角色設定共同完成短篇故事；尚未核實具體場地。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "objectbuild",
+    "name": "物件組裝與微縮模型",
+    "intro": "組裝、塗裝或認識物件製程，完成可帶回的小作品。",
+    "options": [
+      [
+        "object-clock",
+        "鐘錶／時鐘機芯組裝",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "認識機芯並完成組裝或外觀設計；需確認課程是否適合成人約會。",
+        ""
+      ],
+      [
+        "object-miniature",
+        "微縮模型／場景屋／模型塗裝",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "組裝室內場景、微縮物件或模型上色；需查雙人課程與製作時間。",
+        ""
+      ],
+      [
+        "object-wood",
+        "小型木作／竹作／模型組裝",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索小型木竹作品或模型課程；逐項確認工序。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "fermentation",
+    "name": "發酵、食品保存與地方製程",
+    "intro": "以食物加工、發酵或地方食品製程為主的動手體驗。",
+    "options": [
+      [
+        "ferment-pickle",
+        "味噌／泡菜／醃漬製作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索發酵與食品保存實作；需確認課程成人比例及成品帶回方式。",
+        ""
+      ],
+      [
+        "ferment-drink",
+        "康普茶／果醋／發酵飲品製作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以發酵飲品製程和風味設計為主，與一般品飲課區分。",
+        ""
+      ],
+      [
+        "ferment-localfood",
+        "和菓子／糕餅／魚丸等地方食品製程",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索地方食材與食品成形製程；依你們當次興趣自行挑選場次。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "immersivedining",
+    "name": "沉浸式餐桌與互動餐飲",
+    "intro": "把用餐、故事、演出或任務設計結合的餐桌體驗。",
+    "options": [
+      [
+        "dining-theater",
+        "劇場式用餐／沉浸式餐桌",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索有故事線、演出或角色互動的用餐形式；場次多為限定活動，需查日期。",
+        ""
+      ],
+      [
+        "dining-chef",
+        "主廚互動餐會／料理文化餐桌",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索主廚帶領、料理展示或桌邊互動形式；尚未核實是否有常設場次。",
+        ""
+      ],
+      [
+        "dining-task",
+        "主題餐桌任務／角色互動晚餐",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "將用餐與解謎、角色設定或合作任務結合；需確認雙人可否參加。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "boardgames",
+    "name": "合作型桌遊與社交推理",
+    "intro": "以兩人合作、推理或主持人帶領的室內遊戲為主。",
+    "options": [
+      [
+        "game-coop",
+        "雙人合作桌遊導玩",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索有主持人教學或主題導玩的合作型桌遊；需確認雙人遊戲庫。",
+        ""
+      ],
+      [
+        "game-deduction",
+        "推理桌遊／犯罪現場／劇本體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以線索推理、角色演繹或共同破案為主；許多場次需多人，需確認雙人版本。",
+        ""
+      ],
+      [
+        "game-indoorquest",
+        "室內互動任務／解謎闖關",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索室內合作任務與互動裝置；確認不含戶外移動及雙人限制。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "simulators",
+    "name": "模擬器與室內虛擬運動",
+    "intro": "賽車、飛行或運動模擬器等室內技巧體驗。",
+    "options": [
+      [
+        "sim-racing",
+        "賽車模擬器／競速體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索座艙模擬、計時挑戰或雙人競賽；需確認場地設備和預約方式。",
+        ""
+      ],
+      [
+        "sim-flight",
+        "飛行／航空模擬器",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以飛行操作、教練講解或模擬任務為主；尚未核實雙北體驗場地。",
+        ""
+      ],
+      [
+        "sim-sport",
+        "室內高爾夫／滑雪／衝浪模擬器",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索室內運動模擬與初學體驗；逐項確認是否提供教學與雙人同場。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "partnerbody",
+    "name": "雙人身體技巧與合作課",
+    "intro": "需要協作、平衡或互相配合的室內身體活動。",
+    "options": [
+      [
+        "body-acro",
+        "雙人瑜伽／Acro yoga／合作伸展",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以平衡、支撐或合作伸展為主；需確認新手安全指導與雙人同班。",
+        ""
+      ],
+      [
+        "body-aerial",
+        "空中瑜伽／空中環／舞綢入門",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索室內器械與身體控制課程，確認是否適合零基礎及雙人報名。",
+        ""
+      ],
+      [
+        "body-combat",
+        "拳擊／擊劍／武術入門體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以教練帶領的基礎技巧與安全練習為主；需確認不含高強度對打。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "softclay",
+    "name": "軟陶與聚合黏土創作",
+    "intro": "以軟陶塑形、烘烤與小型物件設計為主。",
+    "options": [
+      [
+        "clay-miniature",
+        "微縮食物／小物軟陶塑形",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以手捏塑形與細節造型為主，完成小型作品；尚未核實具體場地。",
+        ""
+      ],
+      [
+        "clay-accessory",
+        "軟陶飾品／磁鐵／生活小物",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索配色、塑形與烘烤成品；依興趣自行挑選媒材與工序。",
+        ""
+      ],
+      [
+        "clay-collab",
+        "雙人共作軟陶作品",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "兩人共同設計一件作品或分別完成配對小物；需確認課程接受成人雙人報名。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "outdoor",
+    "name": "戶外自然與戶外探索",
+    "intro": "自然景觀、戶外活動與雙人探索，依興趣自行挑選。",
+    "options": [
+      [
+        "outdoor-hike",
+        "戶外步道、健行與觀景路線",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "戶外自然活動形式；請依季節、路線難度及交通資訊挑選。",
+        ""
+      ],
+      [
+        "outdoor-bike",
+        "河濱單車與雙人自行車",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索自行車租借、河濱路線或雙人單車體驗。",
+        ""
+      ],
+      [
+        "outdoor-eco",
+        "生態導覽與自然觀察",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索賞鳥、潮間帶或生態導覽；確認場次、季節與集合地點。",
+        ""
+      ],
+      [
+        "outdoor-water",
+        "水上活動與水域體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索獨木舟、SUP或其他水域體驗；確認安全條件與是否需具備經驗。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "family",
+    "name": "親子共遊與家庭體驗",
+    "intro": "適合親子或家庭共同參與的體驗活動，可自行篩選是否符合約會需求。",
+    "options": [
+      [
+        "family-craft",
+        "親子手作與家庭DIY",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "家庭共同創作活動；查詢年齡限制、陪同規定與成人參與方式。",
+        ""
+      ],
+      [
+        "family-cook",
+        "親子料理與烘焙課",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "親子共作料理或甜點；確認適合年齡、課程時長及報名人數。",
+        ""
+      ],
+      [
+        "family-science",
+        "親子科學與互動探索",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索科學實驗、互動展區或家庭工作坊；確認是否需預約。",
+        ""
+      ],
+      [
+        "family-animal",
+        "動物互動與家庭農場體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索動物照護、餵食或農場體驗；確認營運日期與動物友善規範。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "metalwork",
+    "name": "金工與金屬創作",
+    "intro": "金屬材料與首飾、生活小物創作體驗。",
+    "options": [
+      [
+        "metal-silver",
+        "銀戒與銀飾金工",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "銀料敲打、塑形或焊接等課程；確認成品、工時與是否可雙人同堂。",
+        ""
+      ],
+      [
+        "metal-brass",
+        "黃銅小物與金屬敲花",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索黃銅飾品、金屬敲花或生活小物製作。",
+        ""
+      ],
+      [
+        "metal-wire",
+        "金屬線編與金屬飾品",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以金屬線材編織或塑形的飾品創作；確認材料與課程難度。",
+        ""
+      ],
+      [
+        "metal-forge",
+        "金屬鍛敲與器物製作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索金屬鍛敲或小型器物體驗；確認安全裝備及課程適用對象。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "leather",
+    "name": "皮件與皮革工藝",
+    "intro": "皮革縫製、壓印與染色等皮件製作體驗。",
+    "options": [
+      [
+        "leather-sew",
+        "皮革小物手縫",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索卡套、鑰匙圈或小包等手縫皮件課程。",
+        ""
+      ],
+      [
+        "leather-stamp",
+        "皮革壓印與文字雕刻",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "皮革壓印、敲字或圖樣裝飾；確認可選字型與成品尺寸。",
+        ""
+      ],
+      [
+        "leather-dye",
+        "皮革染色與表面處理",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索染色、上油或皮革表面處理體驗。",
+        ""
+      ],
+      [
+        "leather-bag",
+        "皮革包與日用皮件製作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索卡夾、零錢包或小包製作；確認課程時長與成品取件方式。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "tea",
+    "name": "茶席、茶道與封茶",
+    "intro": "品茶、泡茶與茶文化相關的雙人體驗形式。",
+    "options": [
+      [
+        "tea-ceremony",
+        "茶席品茗與茶文化導覽",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索茶師司茶、茶品比較與茶文化介紹；確認預約方式及體驗時長。",
+        ""
+      ],
+      [
+        "tea-brew",
+        "雙人泡茶與茶道體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "親自操作茶具、練習沖泡與奉茶；確認課程是否適合初學者。",
+        ""
+      ],
+      [
+        "tea-seal",
+        "封茶與茶葉紀念品 DIY",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "書寫心願或茶箋，完成茶葉封存與紀念品；確認是否可現場帶回或寄送。",
+        ""
+      ],
+      [
+        "tea-roast",
+        "茶葉焙火與製茶體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索茶葉烘焙、揉捻或製茶流程體驗；查詢實際場次與地點。",
+        ""
+      ],
+      [
+        "tea-pair",
+        "茶與茶點搭配體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "由茶師帶領比較茶湯風味與茶點搭配；確認活動內容及是否含餐點。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "coffee",
+    "name": "咖啡烘豆、手沖與拉花",
+    "intro": "從生豆到沖煮的咖啡感官與實作體驗。",
+    "options": [
+      [
+        "coffee-roast",
+        "咖啡豆烘焙與自選焙度",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "認識生豆並親手烘焙、比較不同焙度；確認是否可帶回自烘咖啡豆。",
+        ""
+      ],
+      [
+        "coffee-pour",
+        "手沖咖啡與沖煮方法體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "練習研磨、注水與萃取，品嘗不同沖煮變化；確認可否雙人共作。",
+        ""
+      ],
+      [
+        "coffee-latte",
+        "義式咖啡與拉花體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "練習咖啡機操作、打奶泡與拉花；確認零基礎是否適合及課程長度。",
+        ""
+      ],
+      [
+        "coffee-cupping",
+        "咖啡感官杯測與風味辨識",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "透過聞香與杯測比較咖啡產區、處理法或烘焙差異。",
+        ""
+      ],
+      [
+        "coffee-siphon",
+        "虹吸壺與特色沖煮體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "嘗試虹吸壺或其他特色沖煮器具，了解操作與風味差異。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "mixology",
+    "name": "調酒與雞尾酒實作",
+    "intro": "親手調製雞尾酒、無酒精特調與飲品搭配。",
+    "options": [
+      [
+        "mix-classic",
+        "經典雞尾酒調製體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "認識基酒、比例與基礎調酒技法，親手完成經典雞尾酒。",
+        ""
+      ],
+      [
+        "mix-theme",
+        "主題式調酒工作坊",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "依單一基酒、季節水果或特定酒款設計主題調酒體驗。",
+        ""
+      ],
+      [
+        "mix-mocktail",
+        "無酒精特調與風味調飲",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以果汁、茶、香草或氣泡飲製作無酒精特調；適合不飲酒時選擇。",
+        ""
+      ],
+      [
+        "mix-cocktailpair",
+        "雞尾酒與餐點搭配體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索調酒與餐點或甜點的風味搭配；確認場次供應內容。",
+        ""
+      ],
+      [
+        "mix-shake",
+        "雙人調酒挑戰與盲飲品鑑",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "嘗試雙人分工調製、猜酒款或盲飲風味遊戲；確認活動是否提供非酒精選項。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "competitive",
+    "name": "運動競技與遊戲體驗",
+    "intro": "雙人可以對戰、合作或一起學習的實體娛樂與運動形式。",
+    "options": [
+      [
+        "game-bowling",
+        "保齡球雙人對戰",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可探索一般球道、主題燈光或包場體驗；查詢營業時段與設備。",
+        ""
+      ],
+      [
+        "game-billiards",
+        "撞球與雙人技巧挑戰",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可安排初學者教學或友善對戰；確認場地環境及教練體驗課。",
+        ""
+      ],
+      [
+        "game-darts",
+        "飛鏢與電子飛鏢競賽",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以電子飛鏢或酒吧飛鏢進行雙人積分挑戰；確認場地規則與低消。",
+        ""
+      ],
+      [
+        "game-skating",
+        "室內滑冰與雙人滑冰課",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "可選公眾滑冰或初學者教學；確認開放時段、租借裝備與安全規範。",
+        ""
+      ],
+      [
+        "game-kart",
+        "卡丁車與雙人賽道競速",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索實體卡丁車賽道或雙人競速場次；確認場地位置、身高限制及安全規範。",
+        ""
+      ]
+    ]
+  },
+  {
+    "id": "recording",
+    "name": "錄音室、翻唱錄製與音樂製作",
+    "intro": "進錄音室體驗錄音、歌唱指導或簡易音樂製作。",
+    "options": [
+      [
+        "record-cover",
+        "翻唱歌曲錄音體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "在錄音師協助下錄製一首喜歡的歌曲；確認曲目授權與成品交付方式。",
+        ""
+      ],
+      [
+        "record-duet",
+        "雙人合唱與錄音體驗",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "以二重唱或對唱方式錄音；確認是否有雙人方案與曲目選擇。",
+        ""
+      ],
+      [
+        "record-mv",
+        "錄音加個人 MV 製作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "結合歌唱指導、錄音與影像拍攝，完成歌曲或短片成品。",
+        ""
+      ],
+      [
+        "record-voice",
+        "配唱指導與聲音錄製",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "探索發聲練習、配唱表情與專業錄音流程；確認零基礎可否參加。",
+        ""
+      ],
+      [
+        "record-beat",
+        "節奏編曲與簡易音樂製作",
+        "活動方向（尚待搜尋店家）",
+        "雙北／待查",
+        "嘗試節奏編排、錄音設備或簡易音樂製作；確認是體驗課或長期課程。",
+        ""
+      ]
+    ]
+  }
+];
+function parseActivityMarkdown(markdown){const match=markdown.match(/<!-- WEBSITE_ACTIVITY_DATA_START -->\s*```json\s*([\s\S]*?)\s*```\s*<!-- WEBSITE_ACTIVITY_DATA_END -->/);if(!match)throw new Error('找不到網站活動資料區塊');const data=JSON.parse(match[1]);if(!Array.isArray(data)||!data.length)throw new Error('活動方向資料格式不正確');for(const d of data){if(!d.id||!d.name||!Array.isArray(d.options))throw new Error('活動方向缺少必要欄位');for(const o of d.options){if(!Array.isArray(o)||o.length<6||o.slice(0,5).some(v=>!v))throw new Error('候選活動資料不完整')}}return data}
+function isCustom(d){return String(d.id).startsWith('custom-')}function saveCustomDirections(){try{localStorage.setItem(CUSTOM_STORAGE,JSON.stringify(customDirections))}catch{}}
+function setActivityDirections(base,source){const baseIds=new Set(base.map(d=>d.id));DIRS=[...base,...customDirections.filter(d=>!baseIds.has(d.id))];allOptions=DIRS.flatMap(d=>d.options.map(([id,name,venue,area,detail,url])=>({id,name,venue,area,detail,url,direction:d.id,directionName:d.name})));if(active&&!DIRS.some(d=>d.id===active))active=null;$('#sourceHint').classList.remove('error');$('#sourceHint').textContent=`資料來源：${source} · ${DIRS.length} 個方向、${allOptions.length} 個候選活動`;render()}
+function setActivityData(markdown,source){setActivityDirections(parseActivityMarkdown(markdown),source)}function status(id){return marks[id]||'unknown'}function setStatus(id,v){if(v==='unknown')delete marks[id];else marks[id]=v;try{localStorage.setItem(STORAGE,JSON.stringify(marks))}catch{}render()}
+function nav(){const root=$('#directions');root.replaceChildren();for(const d of DIRS){const b=document.createElement('button');b.type='button';b.className='direction'+(active===d.id?' active':'');b.setAttribute('aria-pressed',String(active===d.id));b.innerHTML=`<span>${esc(d.name)}</span><span class="num">${isCustom(d)?'自訂 · ':''}${d.options.length} 項</span>`;b.addEventListener('click',()=>{active=d.id;render()});root.append(b)}}
+function render(){nav();const selected=DIRS.find(d=>d.id===active);$('#welcome').classList.toggle('hide',!!selected);$('#heading').classList.toggle('hide',!selected);$('#customOptionTools').classList.toggle('hide',!(selected&&isCustom(selected)));let list=active?allOptions.filter(o=>o.direction===active):[];if(query)list=allOptions.filter(o=>(o.name+' '+o.venue+' '+o.area+' '+o.detail+' '+o.directionName).toLowerCase().includes(query.toLowerCase()));if(filter!=='all')list=list.filter(o=>status(o.id)===filter);if(selected&&!query){$('#title').textContent=selected.name;$('#intro').textContent=selected.intro||'自訂活動方向'}const cards=$('#cards');cards.innerHTML='';if(!active&&!query){$('#count').textContent='先從左側選擇活動方向';cards.innerHTML='<div class="empty">選擇一個活動方向，這裡就會列出候選選項。</div>';return}$('#count').textContent=`${query?'搜尋結果':'候選選項'}：${list.length} 項`+(filter==='all'?'':` · ${filter==='visited'?'去過':filter==='not_visited'?'還沒去過':'待確認'}`);if(!list.length){const msg=selected&&isCustom(selected)&&filter==='all'&&!query?'這個自訂方向還沒有候選活動，使用下方表單新增。':'這個條件下沒有候選項目，試試其他關鍵字或標記狀態。';cards.innerHTML=`<div class="empty">${msg}</div>`;return}for(const o of list){const st=status(o.id);const card=document.createElement('article');card.className='card';card.innerHTML=`<div class="cardTop"><h3>${esc(o.name)}</h3><span class="area">${esc(o.area)}</span></div><div class="venue">${esc(o.venue)}</div><p class="desc">${esc(o.detail)}</p><div class="actions"><button class="stateBtn" data-state="visited" aria-pressed="${st==='visited'}">${st==='visited'?'✓ ':''}去過</button><button class="stateBtn" data-state="not_visited" aria-pressed="${st==='not_visited'}">${st==='not_visited'?'✓ ':''}還沒去過</button><button class="stateBtn" data-state="unknown" aria-pressed="${st==='unknown'}">${st==='unknown'?'✓ ':''}待確認</button>${o.url?`<a class="link" href="${esc(o.url)}" target="_blank" rel="noopener noreferrer">查看來源 ↗</a>`:''}</div>`;card.querySelectorAll('.stateBtn').forEach(b=>b.onclick=()=>setStatus(o.id,b.dataset.state));cards.append(card)}}
+function makeId(prefix){return prefix+'-'+(crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2))}
+$('#directionForm').addEventListener('submit',e=>{e.preventDefault();const name=$('#newDirectionName').value.trim();const intro=$('#newDirectionIntro').value.trim();if(!name)return;if(DIRS.some(d=>d.name.trim().toLowerCase()===name.toLowerCase())){alert('已有相同名稱的活動方向。');return}const d={id:makeId('custom'),name,intro,options:[]};customDirections.push(d);saveCustomDirections();$('#directionForm').reset();setActivityDirections(FALLBACK_DIRS,'本機資料＋自訂方向');active=d.id;$('#customOptionTools').open=true;render();$('#newActivityName').focus()});
+$('#optionForm').addEventListener('submit',e=>{e.preventDefault();const d=DIRS.find(x=>x.id===active);if(!d||!isCustom(d))return;const name=$('#newActivityName').value.trim(),venue=$('#newActivityVenue').value.trim(),area=$('#newActivityArea').value.trim()||'待補',detail=$('#newActivityDetail').value.trim(),url=$('#newActivityUrl').value.trim();if(!name||!venue)return;d.options.push([makeId('custom-option'),name,venue,area,detail,url]);customDirections=DIRS.filter(isCustom);saveCustomDirections();$('#optionForm').reset();setActivityDirections(FALLBACK_DIRS,'本機資料＋自訂方向');active=d.id;render()});
+async function loadMarkdownText(markdown,source){try{setActivityData(markdown,source)}catch(e){$('#sourceHint').classList.add('error');$('#sourceHint').textContent=`無法讀取活動資料：${e.message}`;throw e}}
+$('#loadMd').onclick=()=>$('#mdFile').click();$('#mdFile').onchange=async e=>{const f=e.target.files&&e.target.files[0];if(!f)return;try{await loadMarkdownText(await f.text(),f.name)}catch{}e.target.value=''};$('#search').oninput=e=>{query=e.target.value;render()};$('#stateFilter').onchange=e=>{filter=e.target.value;render()};$('#reset').onclick=()=>{$('#search').value='';$('#stateFilter').value='all';query='';filter='all';active=null;render()};
+$('#export').onclick=()=>{const blob=new Blob([JSON.stringify({version:3,marks,customDirections},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='雙北約會體驗備份.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};$('#import').onclick=()=>$('#file').click();$('#file').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!x.marks||typeof x.marks!=='object')throw Error();marks=x.marks;if(Array.isArray(x.customDirections))customDirections=x.customDirections.filter(d=>d&&String(d.id).startsWith('custom-')&&d.name&&Array.isArray(d.options));try{localStorage.setItem(STORAGE,JSON.stringify(marks))}catch{}saveCustomDirections();setActivityDirections(FALLBACK_DIRS,'本機資料＋匯入備份')}catch{alert('檔案格式無法辨識，請選擇先前匯出的 JSON 備份。')}e.target.value=''};$('#clearMarks').onclick=()=>{if(confirm('要清除所有候選項目的去過標記嗎？')){marks={};try{localStorage.removeItem(STORAGE)}catch{}render()}};
+async function initialize(){setActivityDirections(FALLBACK_DIRS,'HTML 內建備援資料');try{const r=await fetch('./activities.md',{cache:'no-store'});if(!r.ok)throw new Error(`HTTP ${r.status}`);await loadMarkdownText(await r.text(),'activities.md')}catch{$('#sourceHint').classList.add('error');$('#sourceHint').textContent='目前使用內建候選資料。若你剛更新 MD，請按「載入活動 MD」並選擇新版檔案；Sites 網站會自動讀取部署中的 activities.md。'}}initialize();</script></body></html>
+
+
+
+
+
+
+
